@@ -1,0 +1,21 @@
+https://learn.microsoft.com/es-es/cli/azure/acr?view=azure-cli-latest#az-acr-build
+
+https://learn.microsoft.com/es-es/azure/container-registry/container-registry-tasks-reference-yaml
+
+
+https://docs.docker.com/engine/reference/builder/
+https://docs.docker.com/engine/reference/run/
+https://docs.docker.com/engine/reference/commandline/build/
+
+
+https://learn.microsoft.com/es-mx/training/modules/publish-container-image-to-azure-container-registry/6-build-run-image-azure-container-registry
+
+az group create --name az204-acr-rg --location centralUS
+
+az acr create --resource-group az204-acr-rg --name  --sku Basic
+
+echo FROM mcr.microsoft.com/hello-world > Dockerfile
+
+az acr build --image hello-world:v1 --registry myacr131213 --file Dockerfile .
+
+az acr repository list --name myacr131213 --output table
