@@ -10,3 +10,10 @@ https://learn.microsoft.com/es-es/azure/cosmos-db/nosql/samples-dotnet
 
 
 https://learn.microsoft.com/es-mx/training/modules/work-with-cosmos-db/3-exercise-work-cosmos-db-dotnet
+
+
+https://learn.microsoft.com/es-mx/training/modules/work-with-cosmos-db/4-cosmos-db-stored-procedures
+https://learn.microsoft.com/es-es/azure/cosmos-db/nosql/how-to-use-stored-procedures-triggers-udfs?tabs=dotnet-sdk-v2#pre-triggers
+https://learn.microsoft.com/es-es/azure/cosmos-db/nosql/how-to-use-stored-procedures-triggers-udfs?tabs=dotnet-sdk-v2#post-triggers
+
+https://learn.microsoft.com/es-es/azure/azure-functions/functions-bindings-cosmosdb-v2-trigger?tabs=python-v2%2Cisolated-process%2Cextensionv4%2Cnodejs-v4&pivots=programming-language-csharp
