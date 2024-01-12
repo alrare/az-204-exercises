@@ -10,12 +10,20 @@ https://docs.docker.com/engine/reference/commandline/build/
 
 https://learn.microsoft.com/es-mx/training/modules/publish-container-image-to-azure-container-registry/6-build-run-image-azure-container-registry
 
+Ejecutar comandos en cloud shell bash
+
 az group create --name az204-acr-rg --location centralUS
 
-az acr create --resource-group az204-acr-rg --name  --sku Basic
+az acr create --resource-group az204-acr-rg --name myacr131213 --sku Basic
 
 echo FROM mcr.microsoft.com/hello-world > Dockerfile
 
-az acr build --image hello-world:v1 --registry myacr131213 --file Dockerfile .
+az acr build --image sample/hello-world:v1 --registry myacr131213 --file Dockerfile .
 
 az acr repository list --name myacr131213 --output table
+
+az acr repository show-tags --name myacr131213 --repository sample/hello-world --output table
+
+az acr run --registry myacr131213 --cmd '$Registry/sample/hello-world:v1' /dev/null
+
+az group delete --name az204-acr-rg --no-wait
