@@ -1,0 +1,1 @@
+https://learn.microsoft.com/es-mx/training/modules/implement-authentication-by-using-microsoft-authentication-library/4-interactive-authentication-msal

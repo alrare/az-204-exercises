@@ -27,3 +27,59 @@ az acr repository show-tags --name myacr131213 --repository sample/hello-world -
 az acr run --registry myacr131213 --cmd '$Registry/sample/hello-world:v1' /dev/null
 
 az group delete --name az204-acr-rg --no-wait
+
+
+
+https://learn.microsoft.com/es-mx/training/modules/create-run-container-images-azure-container-instances/3-run-azure-container-instances-cloud-shell
+
+az group create --name az204-aci-rg --location centralus
+
+az container create --resource-group az204-aci-rg \
+    --name mycontainer \
+    --image mcr.microsoft.com/azuredocs/aci-helloworld \
+    --ports 80 \
+    --dns-name-label $DNS_NAME_LABEL --location centralus
+
+az container show --resource-group az204-aci-rg \
+    --name mycontainer \
+    --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" \
+    --out table 
+
+
+https://learn.microsoft.com/es-mx/training/modules/implement-azure-container-apps/2-explore-azure-container-apps
+
+https://keda.sh/docs/2.12/scalers/
+https://docs.dapr.io/concepts/overview/
+
+
+https://learn.microsoft.com/es-mx/training/modules/implement-azure-container-apps/3-exercise-deploy-app
+
+az extension add --name containerapp --upgrade
+
+az provider register --namespace Microsoft.App
+
+az provider register --namespace Microsoft.OperationalInsights
+
+myRG=az204-appcont-rg
+myLocation=centralus
+myAppContEnv=az204-env-$RANDOM
+
+az group create \
+    --name $myRG \
+    --location $myLocation
+
+az containerapp env create \
+    --name $myAppContEnv \
+    --resource-group $myRG \
+    --location $myLocation
+
+az containerapp create \
+    --name my-container-app \
+    --resource-group $myRG \
+    --environment $myAppContEnv \
+    --image mcr.microsoft.com/azuredocs/containerapps-helloworld:latest \
+    --target-port 80 \
+    --ingress 'external' \
+    --query properties.configuration.ingress.fqdn
+
+az group delete --name $myRG
