@@ -1,0 +1,19 @@
+https://learn.microsoft.com/es-es/azure/key-vault/general/developers-guide
+https://learn.microsoft.com/es-es/azure/key-vault/general/disaster-recovery-guidance
+
+
+https://learn.microsoft.com/es-mx/training/modules/implement-azure-key-vault/5-set-retrieve-secret-azure-key-vault
+
+
+myKeyVault=az204vault-$RANDOM
+myLocation=centralus
+
+az group create --name az204-vault-rg --location centralus
+
+az keyvault create --name $myKeyVault --resource-group az204-vault-rg --location centralus
+
+az keyvault secret set --vault-name $myKeyVault --name "ExamplePassword" --value "hVFkk965BuUv"
+
+az keyvault secret show --name "ExamplePassword" --vault-name $myKeyVault
+
+az group delete --name az204-vault-rg --no-wait
