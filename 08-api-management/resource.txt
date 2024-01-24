@@ -1,0 +1,20 @@
+https://learn.microsoft.com/es-es/azure/api-management/api-management-policies
+
+https://learn.microsoft.com/es-es/azure/api-management/api-management-error-handling-policies
+
+
+https://learn.microsoft.com/es-mx/training/modules/explore-api-management/8-exercise-import-api
+
+myApiName=az204-apim-$RANDOM
+myLocation=centralus   
+myEmail=alrare@hotmail.com
+
+az group create --name az204-apim-rg --location centralus
+
+az apim create -n myApiMngr     --location centralus     --publisher-email alrare@hotmail.com      --resource-group az204-apim-rg     --publisher-name AZ204-APIM-Exercise     --sku-name Consumption
+
+
+Importación de una API de back-end
+
+
+az group delete --name az204-apim-rg

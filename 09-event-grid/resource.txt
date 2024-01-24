@@ -1,0 +1,48 @@
+https://learn.microsoft.com/es-mx/training/modules/azure-event-grid/8-event-grid-custom-events
+
+let rNum=$RANDOM*$RANDOM
+myLocation=centralus   
+myTopicName="az204-egtopic-${rNum}"
+mySiteName="az204-egsite-${rNum}"
+mySiteURL="https://mySiteName.azurewebsites.net"
+
+az group create --name az204-evgrid-rg --location centralus
+
+az provider register --namespace Microsoft.EventGrid
+
+Creación de un tema personalizado
+
+az eventgrid topic create --name mytpc \
+    --location centralus \
+    --resource-group az204-evgrid-rg
+
+Creación de un punto de conexión de mensaje
+
+az deployment group create \
+    --resource-group az204-evgrid-rg \
+    --template-uri "https://raw.githubusercontent.com/Azure-Samples/azure-event-grid-viewer/main/azuredeploy.json" \
+    --parameters siteName=az204-egsite-${rNum} hostingPlanName=viewerhost
+
+echo "Your web app URL: ${https://mySiteName.azurewebsites.net}"
+
+
+Suscripción a un tema personalizado
+
+
+endpoint="https://az204-egsite-533371775.azurewebsites.net/api/updates"
+subId=$(az account show --subscription "" | jq -r '.id')
+
+az eventgrid event-subscription create \
+    --source-resource-id "/subscriptions/$subId/resourceGroups/az204-evgrid-rg/providers/Microsoft.EventGrid/topics/mytpc" \
+    --name az204ViewerSub \
+    --endpoint $endpoint
+
+
+topicEndpoint=$(az eventgrid topic show --name mytpc -g az204-evgrid-rg --query "endpoint" --output tsv)
+key=$(az eventgrid topic key list --name mytpc -g az204-evgrid-rg --query "key1" --output tsv)
+
+event='[ {"id": "'"$RANDOM"'", "eventType": "recordInserted", "subject": "myapp/vehicles/motorcycles", "eventTime": "'`date +%Y-%m-%dT%H:%M:%S%z`'", "data":{ "make": "Contoso", "model": "Monster"},"dataVersion": "1.0"} ]'
+
+curl -X POST -H "aeg-sas-key: $key" -d "$event" $topicEndpoint
+
+az group delete --name az204-evgrid-rg --no-wait 
