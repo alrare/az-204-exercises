@@ -1,0 +1,53 @@
+https://learn.microsoft.com/es-mx/training/modules/discover-azure-message-queue/6-send-receive-messages-service-bus
+
+myLocation=centralus
+myNameSpaceName=az204svcbus$RANDOM
+
+
+Creación de recursos de Azure
+
+az group create --name az204-svcbus-rg --location centralus
+
+az servicebus namespace create \
+    --resource-group az204-svcbus-rg \
+    --name az204svcbus \
+    --location centralus
+
+
+az servicebus queue create --resource-group az204-svcbus-rg \
+    --namespace-name az204svcbus \
+    --name az204-queue
+
+
+Recuperación de la cadena de conexión para el espacio de nombres de Service Bus
+
+1. az204svcbus | Directivas de acceso compartido | Directiva SAS: RootManageSharedAccessKey
+2. Copiar: Cadena de conexión principal
+
+
+Creación de una aplicación de consola para enviar mensajes a la cola
+
+code .
+
+dotnet new console
+
+dotnet add package Azure.Messaging.ServiceBus
+
+using Azure.Messaging.ServiceBus;
+
+
+
+Revisión de los resultados
+
+1. az204-queue (az204svcbus/az204-queue) | Service Bus Explorer
+
+
+Actualización del proyecto para recibir mensajes de la cola
+1. copiar codigo
+
+Limpieza de recursos
+az group delete --name az204-svcbus-rg --no-wait
+
+
+
+
