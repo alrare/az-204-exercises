@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "8J0ZzhFSMxoEJc+yfO+S4yWH5aboYgaLlFXQXnG5n61xIPxdtNHfuGJCCFZZ2jHGUcidq6yxE3u6QJVX5HvTFA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Propietario\\Desktop\\az-204-exercises\\11-redis-cache\\rediscache\\Rediscache.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Propietario\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Propietario\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
+    "C:\\Users\\Propietario\\.nuget\\packages\\stackexchange.redis\\2.7.17\\stackexchange.redis.2.7.17.nupkg.sha512",
+    "C:\\Users\\Propietario\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

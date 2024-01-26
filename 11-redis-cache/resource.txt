@@ -1,0 +1,36 @@
+https://learn.microsoft.com/es-mx/training/modules/develop-for-azure-cache-for-redis/2-azure-cache-redis-overview
+
+https://redis.io/
+
+https://redis.io/download/
+
+https://github.com/StackExchange/StackExchange.Redis/blob/main/src/StackExchange.Redis/Interfaces/IDatabase.cs
+
+
+Ejercicio: Conexión de una aplicación a Azure Cache for Redis mediante .NET Core
+
+Creación de recursos de Azure
+
+az group create --name az204-redis-rg --location centralus
+
+redisName=az204redis$RANDOM
+az redis create --location centralus \
+    --resource-group az204-redis-rg \
+    --name $redisName \
+    --sku Basic --vm-size c0
+
+Copiar clave de acceso
+
+
+Creación de la aplicación de consola
+
+1. dotnet new console -o Rediscache
+2. dotnet add package StackExchange.Redis
+3. using StackExchange.Redis;
+4. // connection string to your Redis Cache    
+   string connectionString = "REDIS_CONNECTION_STRING";
+
+Limpieza de recursos
+
+az group delete -n az204-redis-rg --no-wait
+
